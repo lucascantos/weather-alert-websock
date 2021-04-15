@@ -12,11 +12,6 @@ provider:
       Resource: 
         - "arn:aws:s3:::${env:BUCKET_NAME}"
         - "arn:aws:s3:::${env:BUCKET_NAME}/*"
-  vpc:
-    securityGroupIds:
-      - sg-3974775c
-    subnetIds:
-      - subnet-0f2425cb967edf08d
 
 plugins:
   - serverless-python-requirements
