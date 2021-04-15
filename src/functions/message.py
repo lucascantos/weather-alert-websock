@@ -3,6 +3,11 @@ import json
 import boto3
 
 def broadcast_event (event, client_list):
+    '''
+    Send messages to all clients on list. Return list of invalid ids to be delt with
+    :params event: Event to send
+    :params client_list: Iterable of clients to send the event
+    '''
     event_context = event['requestContext']
     sender = event_context['connectionId']
     print(event_context['routeKey'])
