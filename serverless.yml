@@ -1,0 +1,47 @@
+service: weather-websocket
+
+provider:
+  name: aws
+  runtime: python3.8
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+        - s3:PutObject
+        - s3:HeadObject
+      Resource: 
+        - "arn:aws:s3:::${env:BUCKET_NAME}"
+        - "arn:aws:s3:::${env:BUCKET_NAME}/*"
+  vpc:
+    securityGroupIds:
+      - sg-3974775c
+    subnetIds:
+      - subnet-0f2425cb967edf08d
+
+plugins:
+  - serverless-python-requirements
+  - serverless-dotenv-plugin
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+  S3_BUCKET: ${env:S3_BUCKET}
+
+functions:
+  connectHandler:
+    handler: handler.connection
+    events:
+      - websocket: $connect
+      - websocket: $disconnect
+     
+  default:
+    handler: handler.default
+    events:
+      - websocket: 
+        route: $default
+
+  sendMsg:
+    handler: handler.broadcast_data
+    events:
+      - websocket:
+          route: sendData
