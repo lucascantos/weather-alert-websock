@@ -15,8 +15,7 @@ provider:
 
 plugins:
   - serverless-python-requirements
-  - serverless-dotenv-plugin
-  - serverless-websockets-plugin
+  - serverless-offline
 
 custom:
   pythonRequirements:
