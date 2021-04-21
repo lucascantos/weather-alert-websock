@@ -54,6 +54,12 @@ class UserDB:
         :params channel: channel name to be filtered     
         '''
         return filter(lambda x: x[1]==channel, self.user_data.items())
+        
+    def clear(self):
+        groupless = self.channel_connected(None)
+        self.batch_remove([k for k,v in groupless])
+
+
 
     def save(self):
         '''

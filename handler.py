@@ -48,6 +48,7 @@ def subscribe(event=None, context=None):
 
     user_db.add(user_id, channel)
     ws.send_message(user_id, f'Welcome to the channel: {channel}')
+    user_db.clear()
     return response['success']
 
 def broadcast_data (event=None, context=None):
