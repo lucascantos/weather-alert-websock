@@ -1,6 +1,6 @@
 from src.services.s3 import S3
 import json
-class userDB:
+class UserDB:
     def __init__(self):
         '''
         Handles user connections
