@@ -12,16 +12,17 @@ def connection(event=None, context=None):
     event_context = event['requestContext']
     user_id = event_context['connectionId']
     user_db = UserDB()
-    ws = Websocket(event_context)
     event_type = event_context['eventType']
     if event_type == 'CONNECT':
         user_db.add(user_id, None)
     elif event_type == 'DISCONNECT':
         user_db.remove(user_id)
+        return response['success']
     else:
         return response['failure']
     user_db.save()
         
+    ws = Websocket(event_context)
     ws.send_message(user_id, f'Use the route "subscribe" to join a channel.')
     ws.send_message(user_id, f'Channels available: ["lightnings","alerts"]')
     return response['success']
