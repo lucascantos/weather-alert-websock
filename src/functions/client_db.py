@@ -6,7 +6,7 @@ class ClientDB:
         Handles client connections
         '''
         self.bucket = S3()
-        self._filename = 'clients_connected.json'
+        self._filename = 'ws_users.json'
         try:
             self.client_data = bucket.load(self._filename)
         except:

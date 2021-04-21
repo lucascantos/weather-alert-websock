@@ -16,11 +16,12 @@ provider:
 plugins:
   - serverless-python-requirements
   - serverless-dotenv-plugin
+  - serverless-offline
 
 custom:
   pythonRequirements:
     dockerizePip: non-linux
-  S3_BUCKET: ${env:S3_BUCKET}
+  LIGHTNING_SNS: arn:aws:sns:${env:DEFAULT_REGION}:${env:AWS_ID}:${env:LIGHTNING_SNS}
 
 functions:
   connectHandler:
@@ -35,8 +36,7 @@ functions:
       - websocket: 
         route: $default
 
-  sendMsg:
+  send-msg:
     handler: handler.broadcast_data
     events:
-      - websocket:
-          route: sendData
+      - sns: ${self:custom.LIGHTNING_SNS}

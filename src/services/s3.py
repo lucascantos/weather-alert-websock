@@ -1,7 +1,7 @@
 import boto3
 import json
 from datetime import datetime
-from src.configs.credentials import BUCKET_NAME
+from src.configs.configs import BUCKET_NAME
 
 class MockS3():
     def check_exist_file(self, filepath):

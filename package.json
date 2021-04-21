@@ -1,0 +1,22 @@
+{
+  "name": "weather-websocket",
+  "version": "1.0.0",
+  "description": "Websocket of weather data, such as lightnings and alerts",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucascantos/weather-alert-websock.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucascantos/weather-alert-websock/issues"
+  },
+  "homepage": "https://github.com/lucascantos/weather-alert-websock#readme",
+  "dependencies": {
+    "serverless-dotenv-plugin": "^3.9.0",
+    "serverless-python-requirements": "^5.1.1"
+  }
+}

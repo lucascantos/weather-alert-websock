@@ -2,6 +2,7 @@ from src.functions.client_db import ClientDB
 from src.functions.message import broadcast_event
 from src.helpers.responses import response
 from src.services.s3 import S3
+import json
 
 def connection(event=None, context=None):
     '''
@@ -33,10 +34,11 @@ def broadcast_data (event=None, context=None):
     Send message to all connected clients
     '''
     print(event)
-    channel = ''
+    message = json.loads(event['Records'][0]['Sns']['Message'])    
+    channel = event['Records'][0]['Sns']['Subject']
     client_db = ClientDB()
     channel_clients = client_db.channel_connected(channel)
-    invalid_ids = broadcast_event(event, channel_clients)
+    invalid_ids = broadcast_event(message, channel_clients)
     for iid in invalid_ids:
         client_db.remove(iid)
     client_db.save()
