@@ -20,11 +20,11 @@ def connection(event=None, context=None):
         client_db.remove(client_id)
     else:
         return response['failure']
-    # client_db.save()
-    
+    client_db.save()
+        
     ws.send_message(client_id, f'Use the route "subscribe" to join a channel.')
     ws.send_message(client_id, f'Channels available: ["lightnings","alerts"]')
-
+    return response['success']
 
 def default(event=None, context=None):
     print('Hello', event)
@@ -33,6 +33,7 @@ def default(event=None, context=None):
     ws = Websocket(event_context)
     ws.send_message(client_id, f'Use the route "subscribe" to join a channel.')
     ws.send_message(client_id, f'Channels available: ["lightnings","alerts"]')
+    return response['default']
 
 def subscribe(event=None, context=None):
     print(event)
@@ -46,13 +47,14 @@ def subscribe(event=None, context=None):
 
     client_db.add(client_id, channel)
     ws.send_message(client_id, f'Welcome to the channel: {channel}')
+    return response['success']
 
 def broadcast_data (event=None, context=None):
     '''
     Send message to all connected clients
     '''
     print(event)
-    ws = Websocket(event)
+    ws = Websocket()
     client_db = ClientDB()
 
     message = json.loads(event['Records'][0]['Sns']['Message'])    
@@ -63,5 +65,6 @@ def broadcast_data (event=None, context=None):
     for iid in invalid_ids:
         client_db.remove(iid)
     client_db.save()
+    return response['success']
 
 

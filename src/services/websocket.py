@@ -9,8 +9,8 @@ class Websocket:
         else:
             self.event_context = {
                 'connectionId': None,
-                'domainName': 'localhost',
-                'stage': 'local'
+                'domainName': 'yv9sys0wme',
+                'stage': 'prod'
             }
 
         self.session = boto3.session.Session()
