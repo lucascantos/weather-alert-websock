@@ -17,6 +17,7 @@
   "homepage": "https://github.com/lucascantos/weather-alert-websock#readme",
   "dependencies": {
     "serverless-dotenv-plugin": "^3.9.0",
-    "serverless-python-requirements": "^5.1.1"
+    "serverless-python-requirements": "^5.1.1",
+    "serverless-websockets-plugin": "^1.0.0"
   }
 }

@@ -8,6 +8,7 @@ class ClientDB:
         self.bucket = S3()
         self._filename = 'ws_users.json'
         try:
+            raise ValueError
             self.client_data = bucket.load(self._filename)
         except:
             self.client_data = {}
