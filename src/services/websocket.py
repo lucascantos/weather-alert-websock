@@ -21,36 +21,36 @@ class Websocket:
         )
         self.invalid_ids = []
 
-    def send_message(self, client_id, message):
+    def send_message(self, user_id, message):
         try:
             self.client.post_to_connection(
                 Data=message, 
-                ConnectionId=client_id
+                ConnectionId=user_id
                 )
         except:
-            print(f'Invalid client_id! Disconeccting: {client_id}')
-            self.invalid_ids.append(client_id)
-            return client_id
+            print(f'Invalid user! Disconeccting: {user_id}')
+            self.invalid_ids.append(user_id)
+            return user_id
 
-    def broadcast_message(self, client_list, message):
+    def broadcast_message(self, user_list, message):
         '''
-        Send messages to all clients on list, except the sender. Return list of invalid ids to be delt with
+        Send messages to all users on list, except the sender. Return list of invalid ids to be delt with
         :params event: Event to send
-        :params client_list: Iterable of clients to send the event
+        :params user_list: Iterable of users to send the event
         '''
         sender = self.event_context['connectionId']        
-        if not isinstance(client_list, list):
-            client_list = [client_list]        
+        if not isinstance(user_list, list):
+            user_list = [user_list]        
         invalid_ids = []
-        for client_id in client_list:
-            if client_id != sender:
+        for user_id in user_list:
+            if user_id != sender:
                 try:
-                    self.client.post_to_connection(
+                    self.user.post_to_connection(
                         Data=message, 
-                        ConnectionId=client_id
+                        ConnectionId=user_id
                         )
                 except:
-                    print(f'Invalid client_id! Disconeccting: {client_id}')
-                    self.invalid_ids.append(client_id)
+                    print(f'Invalid user_id! Disconeccting: {user_id}')
+                    self.invalid_ids.append(user_id)
         return invalid_ids
                 

@@ -18,7 +18,7 @@ class S3:
         try:
             self.client.head_bucket(Bucket=self.bucket_name)
         except:
-            print('bucket not found')
+            print(f'Bucket not found: {self.bucket_name}')
             self.client.create_bucket
         
 
