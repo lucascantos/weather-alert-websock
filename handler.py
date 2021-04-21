@@ -59,7 +59,7 @@ def broadcast_data (event=None, context=None):
     ws = Websocket()
     user_db = UserDB()
 
-    message = json.loads(event['Records'][0]['Sns']['Message'])    
+    message = event['Records'][0]['Sns']['Message']  
     channel = event['Records'][0]['Sns']['Subject']
     channel_users = user_db.channel_connected(channel)
 
