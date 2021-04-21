@@ -8,7 +8,7 @@ class UserDB:
         self.bucket = S3()
         self._filename = 'ws_users.json'
         try:
-            self.user_data = bucket.load(self._filename)
+            self.user_data = self.bucket.load(self._filename)
         except:
             print('File not found')
             self.user_data = {}
