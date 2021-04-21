@@ -38,9 +38,7 @@ class Websocket:
         :params event: Event to send
         :params user_list: Iterable of users to send the event
         '''
-        sender = self.event_context['connectionId']        
-        if not isinstance(user_list, list):
-            user_list = [user_list]        
+        sender = self.event_context['connectionId']              
         invalid_ids = []
         for user_id in user_list:
             if user_id != sender:
