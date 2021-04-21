@@ -23,6 +23,11 @@ class Websocket:
         self.invalid_ids = []
 
     def send_message(self, user_id, message):
+        '''
+        Send message to a single user
+        :params user_id: String with Id of user
+        :params message: message to send
+        '''
         try:
             self.client.post_to_connection(
                 Data=message, 
@@ -37,7 +42,7 @@ class Websocket:
         '''
         Send messages to all users on list, except the sender. Return list of invalid ids to be delt with
         :params user_list: Iterable of users to send the event
-        :params event: Event to send
+        :params message: message to send
         '''
         sender = self.event_context['connectionId']              
         invalid_ids = []

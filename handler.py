@@ -6,7 +6,7 @@ import json
 
 def connection(event=None, context=None):
     '''
-    Handler fo connections
+    Handler fo connections to WS
     '''
     print('Hello', event)
     event_context = event['requestContext']
@@ -22,12 +22,12 @@ def connection(event=None, context=None):
         return response['failure']
     user_db.save()
         
-    # ws = Websocket(event_context)
-    # ws.send_message(user_id, f'Use the route "subscribe" to join a channel.')
-    # ws.send_message(user_id, f'Channels available: ["lightnings","alerts"]')
     return response['success']
 
 def default(event=None, context=None):
+    '''
+    WS default route. Send instruction to subscribe to a channel
+    '''
     print('Hello', event)
     event_context = event['requestContext']
     user_id = event_context['connectionId']
@@ -37,6 +37,9 @@ def default(event=None, context=None):
     return response['default']
 
 def subscribe(event=None, context=None):
+    '''
+    WS route for subscription to channel
+    '''
     print(event)
     event_context = event['requestContext']
     user_id = event_context['connectionId']
