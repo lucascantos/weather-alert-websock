@@ -35,8 +35,8 @@ class Websocket:
     def broadcast_message(self, user_list, message):
         '''
         Send messages to all users on list, except the sender. Return list of invalid ids to be delt with
-        :params event: Event to send
         :params user_list: Iterable of users to send the event
+        :params event: Event to send
         '''
         sender = self.event_context['connectionId']              
         invalid_ids = []

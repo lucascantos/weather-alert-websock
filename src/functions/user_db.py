@@ -35,13 +35,17 @@ class UserDB:
         except KeyError:
             pass
 
-    def batch_remove(self, user_id):
+    def batch_remove(self, user_ids):
         '''
         Remove user from receiving list
         :params user_id: Id of user       
         '''
-        print(f'Removing {user_id}')
-        self.user_data.pop(user_id)
+        print(f'Removing {user_ids}')
+        for uid in user_ids:
+            try:
+                self.user_data.pop(uid)
+            except KeyError:
+                pass
         self.save()
     
     def channel_connected(self, channel):
@@ -49,6 +53,7 @@ class UserDB:
         Filter users by channel
         :params channel: channel name to be filtered     
         '''
+        print(self.user_data)
         return filter(lambda x: x[1]==channel, self.user_data.items())
 
     def save(self):

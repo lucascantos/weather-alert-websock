@@ -63,9 +63,8 @@ def broadcast_data (event=None, context=None):
     channel_users = user_db.channel_connected(channel)
 
     invalid_ids = ws.broadcast_message(channel_users, message)
-    for iid in invalid_ids:
-        user_db.remove(iid)
-    user_db.save()
+    if invalid_ids:
+        user_db.batch_remove(invalid_ids)
     return response['success']
 
 
