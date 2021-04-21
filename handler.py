@@ -22,9 +22,9 @@ def connection(event=None, context=None):
         return response['failure']
     user_db.save()
         
-    ws = Websocket(event_context)
-    ws.send_message(user_id, f'Use the route "subscribe" to join a channel.')
-    ws.send_message(user_id, f'Channels available: ["lightnings","alerts"]')
+    # ws = Websocket(event_context)
+    # ws.send_message(user_id, f'Use the route "subscribe" to join a channel.')
+    # ws.send_message(user_id, f'Channels available: ["lightnings","alerts"]')
     return response['success']
 
 def default(event=None, context=None):
