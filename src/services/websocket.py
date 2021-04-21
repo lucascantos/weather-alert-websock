@@ -40,13 +40,13 @@ class Websocket:
         '''
         sender = self.event_context['connectionId']              
         invalid_ids = []
-        for user_id in user_list:
+        for user_id, _ in user_list:
             print(user_id)
             if user_id != sender:
                 try:
                     self.user.post_to_connection(
                         Data=message, 
-                        ConnectionId=user_id[0]
+                        ConnectionId=user_id
                         )
                 except:
                     print(f'Invalid user_id! Disconeccting: {user_id}')
