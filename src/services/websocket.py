@@ -9,7 +9,7 @@ class Websocket:
         else:
             self.event_context = {
                 'connectionId': None,
-                'domainName': 'yv9sys0wme',
+                'domainName': 'z8ltbocqnl',
                 'stage': 'prod'
             }
 
