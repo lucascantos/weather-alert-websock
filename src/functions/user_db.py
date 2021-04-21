@@ -10,6 +10,7 @@ class UserDB:
         try:
             self.user_data = bucket.load(self._filename)
         except:
+            print('File not found')
             self.user_data = {}
     
     def add(self, user_id, channel):
@@ -28,8 +29,11 @@ class UserDB:
         :params user_id: Id of user       
         '''
         print(f'Removing {user_id}')
-        self.user_data.pop(user_id)
-        self.save()
+        try:
+            self.user_data.pop(user_id)
+            self.save()
+        except KeyError:
+            pass
 
     def batch_remove(self, user_id):
         '''

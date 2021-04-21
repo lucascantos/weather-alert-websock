@@ -19,7 +19,6 @@ class S3:
             self.client.head_bucket(Bucket=self.bucket_name)
         except:
             print(f'Bucket not found: {self.bucket_name}')
-            self.client.create_bucket
         
 
     def upload(self, data, filepath):
