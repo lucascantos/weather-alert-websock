@@ -53,7 +53,6 @@ class UserDB:
         Filter users by channel
         :params channel: channel name to be filtered     
         '''
-        print(self.user_data)
         return filter(lambda x: x[1]==channel, self.user_data.items())
 
     def save(self):

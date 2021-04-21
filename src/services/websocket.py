@@ -1,6 +1,7 @@
 
 import json
 import boto3
+from src.configs.configs import DEFAULT_REGION
 
 class Websocket:
     def __init__(self, event_context=None):
@@ -9,7 +10,7 @@ class Websocket:
         else:
             self.event_context = {
                 'connectionId': None,
-                'domainName': 'z8ltbocqnl',
+                'domainName': f'z8ltbocqnl.execute-api.{DEFAULT_REGION}.amazonaws.com',
                 'stage': 'prod'
             }
 
