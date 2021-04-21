@@ -22,15 +22,10 @@ class Websocket:
         self.invalid_ids = []
 
     def send_message(self, user_id, message):
-        try:
-            self.client.post_to_connection(
-                Data=message, 
-                ConnectionId=user_id
-                )
-        except:
-            print(f'Invalid user! Disconeccting: {user_id}')
-            self.invalid_ids.append(user_id)
-            return user_id
+        self.client.post_to_connection(
+            Data=message, 
+            ConnectionId=user_id
+            )
 
     def broadcast_message(self, user_list, message):
         '''
